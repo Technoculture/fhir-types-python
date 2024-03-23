@@ -1,6 +1,10 @@
 # FHIR-Types-Python
 
 > Acknowledgement: Based on a fork of the amazing open source library by [Aidbox](https://aidbox.app/)
+>
+> ### Why Fork?
+> - Integrate with db per user architecture
+> - Provide a pythonic, higher level API over FHIR
 
 ## Install
 
