@@ -1,32 +1,23 @@
-# Aidbox-Py
+# FHIR-Types-Python
+
+> Acknowledgement: Based on a fork of the amazing open source library by [Aidbox](https://aidbox.app/)
 
 ## Install
 
 ```shell
-pip install git+https://github.com/Aidbox/aidbox-python
+pip install git+https://github.com/Technoculture/fhir-types-python
 ```
 
 ## Auth
-
-Environment has to contain three variables `AIDBOX_URL`, `AIDBOX_CLIENT_USERNAME` and `AIDBOX_CLIENT_PASSWORD`
-(username and password from aidbox basic client). It can be solved with code below that loads
-variables from the `.env` file.
-
-```python
-from dotenv import load_dotenv
-from os.path import join, dirname
-
-dotenv_path = join(dirname(__file__), ".env")
-load_dotenv(dotenv_path)
-```
+TODO
 
 ## Example
 
 ```python
-from aidbox.resource.appointment import Appointment, Appointment_Participant
-from aidbox.resource.patient import Patient
-from aidbox.resource.practitioner import Practitioner
-from aidbox.base import Reference, HumanName
+from elladb.resource.appointment import Appointment, Appointment_Participant
+from elladb.resource.patient import Patient
+from elladb.resource.practitioner import Practitioner
+from elladb.base import Reference, HumanName
 
 import requests
 
@@ -57,11 +48,11 @@ except requests.exceptions.RequestException as e:
 
 ## API
 
-#### Save resource to aidbox `.save()`
+#### Save resource to elladb `.save()`
 
 ```python
-from aidbox.resource.patient import Patient
-from aidbox.base import HumanName
+from elladb.resource.patient import Patient
+from elladb.base import HumanName
 
 patient = Patient()
 patient.name = [HumanName(family="Bourne", given=["Jason"])]
@@ -72,7 +63,7 @@ patient.save()
 #### Delete resource by id `.delete()`
 
 ```python
-from aidbox.resource.patient import Patient
+from elladb.resource.patient import Patient
 
 patient = Patient(id="patient-1")
 patient.delete()
@@ -81,7 +72,7 @@ patient.delete()
 #### Get resource by id `.from_id()`
 
 ```python
-from aidbox.resource.patient import Patient
+from elladb.resource.patient import Patient
 
 patient = Patient.from_id("patient-1")
 ```
@@ -89,18 +80,18 @@ patient = Patient.from_id("patient-1")
 #### Get resource list `.get()`
 
 ```python
-from aidbox.resource.patient import Patient
-from aidbox.base import Page, Count, Sort, Where
+from elladb.resource.patient import Patient
+from elladb.base import Page, Count, Sort, Where
 
 patients = Patient.get(Where('active', True), Count(10), Page(3), Sort('created_at', 'desc'))
 ```
 
-#### Authorized request to any of Aidbox endpoints `.request()`
+#### Authorized request to any of elladb endpoints `.request()`
 
 ```python
-from aidbox.base import API
+from elladb.base import API
 
-API.request(endpoint="/AidboxTask", method="GET")
+API.request(endpoint="/EllaTask", method="GET")
 
 API.request(
     endpoint="/rpc",
@@ -115,8 +106,8 @@ API.request(
 #### Serialize to JSON `dumps()`
 
 ```python
-from aidbox.resource.patient import Patient
-from aidbox.base import Page, Count, Sort, Where
+from elladb.resource.patient import Patient
+from elladb.base import Page, Count, Sort, Where
 
 patient = Patient.from_id('patient-1')
 patient_json = patient.dumps(exclude_unset=True)
@@ -125,7 +116,7 @@ patient_json = patient.dumps(exclude_unset=True)
 #### Bundle `.bundle()`
 
 ```python
-from aidbox.base import API
+from elladb.base import API
 
 entry = []
 
