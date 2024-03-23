@@ -4,7 +4,7 @@
 >
 > ### Why Fork?
 > - Integrate with db per user architecture
-> - Provide a pythonic, higher level API over FHIR
+> - Add Language Model integration
 
 ## Install
 
